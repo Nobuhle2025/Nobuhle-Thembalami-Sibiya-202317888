@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments | SPU ThriveHub</title>
+  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e9ecef;
+            padding: 20px;
+        }
+
+        nav.navbar {
+            background-color: #0066cc;
+        }
+
+        nav.navbar .navbar-brand,
+        nav.navbar .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .assignment-card {
+            background-color: #f7f7f7;
+            color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .assignment-card h5 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .assignment-card p {
+            font-size: 14px;
+        }
+
+        .assignment-card .due-date {
+            font-size: 16px;
+            font-weight: 500;
+            color: #f3a02f;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            border-color: #0066cc;
+            border-radius: 30px;
+            padding: 12px 20px;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #005bb5;
+            border-color: #005bb5;
+        }
+
+        .add-assignment-btn {
+            background-color: #28a745;
+            border-color: #28a745;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .add-assignment-btn:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            background-color: #0066cc;
+            padding: 10px;
+        }
+
+
+        .reminder-bell {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #f3a02f;
+            cursor: pointer;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 15px;
+            }
+
+            .assignment-card {
+                padding: 15px;
+            }
+
+            .add-assignment-btn {
+                padding: 10px 15px;
+            }
+
+            .reminder-bell {
+                font-size: 20px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">SPU ThriveHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item active"><a class="nav-link" href="#">Assignments</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Wellness</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+  
+    <div class="container">
+
+        <i class="fas fa-bell reminder-bell" title="Reminders"></i>
+
+        <h2>Your Assignments</h2>
+        <p>Keep track of all your upcoming assignments and deadlines.</p>
+
+  
+        <a href="{% url 'add_assignment' %}" class="add-assignment-btn">Add New Assignment</a>
+
+        <div class="assignment-card">
+            <h5>Mathematics Assignment 1</h5>
+            <p>Description: Complete the problems on pages 32-34 of your textbook.</p>
+            <p class="due-date">Due Date: April 15, 2025</p>
+        </div>
+
+        <div class="assignment-card">
+            <h5>History Research Paper</h5>
+            <p>Description: Write a 1500-word paper on World War II.</p>
+            <p class="due-date">Due Date: April 20, 2025</p>
+        </div>
+
+        <div class="assignment-card">
+            <h5>Science Lab Report</h5>
+            <p>Description: Submit the results of your chemistry lab experiment.</p>
+            <p class="due-date">Due Date: April 22, 2025</p>
+        </div>
+
+       
+        <div class="text-center my-4">
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-lg">Back to Dashboard</a>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2025 SPU ThriveHub. All rights reserved.</p>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

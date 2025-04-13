@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Check-in | SPU ThriveHub</title>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        nav.navbar {
+            background-color: #0066cc;
+        }
+
+        nav.navbar .navbar-brand,
+        nav.navbar .navbar-nav .nav-link {
+            color: white;
+        }
+
+        nav.navbar .nav-link:hover {
+            color: #cce6ff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .wellness-card {
+            background-color: #a2d5f2;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            background-color: #0066cc;
+            padding: 10px;
+        }
+
+        #calendar {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">SPU ThriveHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'assignments' %}">Assignments</a></li>
+                <li class="nav-item active"><a class="nav-link" href="#">Wellness</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   
+    <div class="container">
+        <h2>Welcome to Wellness Check-in, {{ user.username }}!</h2>
+        <p>Take a moment to reflect on your mental well-being and engage in a wellness check-in.</p>
+
+        <div class="wellness-card">
+            <h5>How are you feeling today?</h5>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="mood">Mood</label>
+                    <select class="form-control" id="mood" name="mood">
+                        <option value="Happy">Happy</option>
+                        <option value="Sad">Sad</option>
+                        <option value="Stressed">Stressed</option>
+                        <option value="Relaxed">Relaxed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="thoughts">Thoughts</label>
+                    <textarea class="form-control" id="thoughts" name="thoughts" rows="3"
+                        placeholder="Write anything you'd like to share..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit Wellness Check-in</button>
+            </form>
+        </div>
+
+<div class="text-center my-4">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-lg">Back to Dashboard</a>
+</div>
+       
+        <div id="calendar"></div>
+    </div>
+
+   
+    <footer>
+        <p>© 2025 SPU ThriveHub. All rights reserved.</p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek'
+                },
+                events: [
+                  
+                    {
+                        title: 'Happy',
+                        start: '2025-04-08',
+                        backgroundColor: '#28a745'
+                    },
+                    {
+                        title: 'Stressed',
+                        start: '2025-04-09',
+                        backgroundColor: '#ffc107'
+                    },
+                    {
+                        title: 'Sad',
+                        start: '2025-04-10',
+                        backgroundColor: '#dc3545'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+</body>
+
+</html>

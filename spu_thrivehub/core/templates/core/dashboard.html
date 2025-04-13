@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SPU ThriveHub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            padding: 20px;
+        }
+
+
+        nav.navbar {
+            background-color: #0066cc; 
+        }
+
+        nav.navbar .navbar-brand,
+        nav.navbar .navbar-nav .nav-link {
+            color: white;
+        }
+
+      
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .feature-card {
+            background-color:  #ac740d8f; 
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card h5 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            background-color: #0066cc;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">SPU ThriveHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Assignments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Wellness</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <h2>Welcome to your Dashboard, {{ user.username }}!</h2>
+        <p>Your assignments, schedules, and wellness tracking are all available here.</p>
+
+        <div class="d-flex justify-content-center">
+            <div class="feature-card col-md-3">
+                <h5>Track Assignments</h5>
+                <p>Keep track of upcoming assignments and never miss a deadline again.</p>
+                <a href="{% url 'assignments' %}" class="btn btn-light btn-block">Go to Assignments</a>
+            </div>
+            <div class="feature-card col-md-3">
+                <h5>Class Schedule</h5>
+                <p>View your class timetable and set reminders for each class.</p>
+              
+                <a href="{% url 'schedule' %}" class="btn btn-light btn-block">View Schedule</a>
+            </div>
+            <div class="feature-card col-md-3">
+                <h5>Wellness Check-ins</h5>
+                <p>Track your mental health and take care of your emotional well-being.</p>
+               
+                <a href="{% url 'wellness' %}" class="btn btn-light btn-block">Start Wellness Check-in</a>
+            </div>
+
+            <div class="feature-card col-md-3">
+                <h5>Calendar</h5>
+                <p>Track your assignments dates.</p>
+            
+                <a href="{% url 'calendar' %}" class="btn btn-light btn-block">View Calendar</a>
+            </div>
+
+            <div class="feature-card col-md-3">
+                <h5>Mood Chart</h5>
+                <p>Track your moods.</p>
+               
+                <a href="{% url 'mood_chart' %}" class="btn btn-light btn-block">View Moods Chart</a>
+            </div>
+        
+
+        </div>
+
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+ 
+    <footer>
+        <p>© 2025 SPU ThriveHub. All rights reserved.</p>
+    </footer>
+
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+
+</html>

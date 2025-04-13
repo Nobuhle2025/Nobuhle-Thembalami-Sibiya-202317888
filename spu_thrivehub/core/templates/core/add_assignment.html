@@ -1,0 +1,77 @@
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Add New Assignment</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                       
+                        <div class="form-group mb-3">
+                            <label for="id_title">Title</label>
+                            {{ form.title|safe }}
+                        </div>
+
+                       
+                        <div class="form-group mb-3">
+                            <label for="id_description">Description</label>
+                            {{ form.description|safe }}
+                        </div>
+
+                       
+                        <div class="form-group mb-3">
+                            <label for="id_course">Course</label>
+                            {{ form.course|safe }}
+                        </div>
+
+                     
+                        <div class="form-group mb-4">
+                            <label for="id_due_date">Due Date</label>
+                            {{ form.due_date|safe }}
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block">Add Assignment</button>
+                        <a href="{% url 'assignments' %}" class="btn btn-secondary btn-block mt-2">Back to Assignments</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f4f7f6;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>
+{% endblock %}

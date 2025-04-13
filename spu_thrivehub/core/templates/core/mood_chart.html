@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Mood and Productivity Chart</h2>
+    
+    <canvas id="moodChart"></canvas>
+</div>
+
+<script>
+    var ctx = document.getElementById('moodChart').getContext('2d');
+    var moodChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ date_data|safe }},
+            datasets: [{
+                label: 'Productivity',
+                data: {{ productivity_data|safe }},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: false
+            }, {
+                label: 'Mood',
+                data: {{ mood_data|safe }},
+                borderColor: 'rgba(153, 102, 255, 1)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}
